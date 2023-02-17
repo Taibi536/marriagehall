@@ -1,0 +1,35 @@
+
+<%-  include('./layouts/header') %>
+
+<%-  include('./layouts/navbar') %>
+      
+    <main class="tayy bg-center bg-cover bg-no-repeat py-32 pb-96 text-white">
+        
+        <div class="px-2">
+            <h1 class="font-bold underline text-center text-white text-3xl ">Reserved Bookings</h1>
+        </div>
+        <% data.forEach(Customer=>{ %>
+        <div class="flex flex-col sm:flex-row items-center sm:justify-between sm:px-10 border border-gray-600  bg-gradient-to-t from-black via-black  mt-4">
+            <div>
+                <ul class="flex space-x-4 my-4">
+                    <li class="">
+                        Name: <h1><%=Customer.name %></h1>
+                    </li>
+                    <li class="">
+                        Slip ID:<h1> <%=Customer.slip %></h1>
+                    </li>
+                </ul>
+            </div>
+            <div class="space-x-6 my-4">
+                <a href="/data/edit/<%=Customer.id%>" class="bg-black text-white px-2 py-1 rounded-lg">Edit</a>
+                <form action="/data/delete/<%=Customer.id%>?_method=DELETE" class="inline-block" method="post">
+                    <input type="hidden" name="_method" value="DELETE" >
+                    <button type="submit" value="delete" class="bg-black block text-white px-2 py-1 rounded-lg">delete</button>
+                </form>
+                <a href="/home/<%= Customer.id %>" class="bg-black text-white px-2 py-1 rounded-lg">View Detail</a>
+            </div>
+        </div>
+        <%})%>
+        </main>
+
+        <%-  include('./layouts/footer') %>
